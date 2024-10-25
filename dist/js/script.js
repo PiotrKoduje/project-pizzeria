@@ -63,6 +63,7 @@ const select = {
       thisProduct.getElements();
       thisProduct.initAccordin();
       thisProduct.initOrderForm();
+      thisProduct.initAmountWidget();
       thisProduct.processOrder(); 
 
       //console.log('new Product: ', thisProduct);
@@ -102,6 +103,7 @@ const select = {
       thisProduckt.cartButton = thisProduckt.element.querySelector(select.menuProduct.cartButton);
       thisProduckt.priceElem = thisProduckt.element.querySelector(select.menuProduct.priceElem);
       thisProduckt.imageWrapper = thisProduckt.element.querySelector(select.menuProduct.imageWrapper);
+      thisProduckt.amountWidgetElem = thisProduckt.element.querySelector(select.menuProduct.amountWidget);
     }
 
     initAccordin(){
@@ -195,8 +197,99 @@ const select = {
           }
         }
       }
+
+      price *= thisProduckt.amountWidget.value;
       thisProduckt.priceElem.innerHTML = price;
     }
+
+    initAmountWidget(){
+      const thisProduckt = this;
+      thisProduckt.amountWidget = new AmountWidget(thisProduckt.amountWidgetElem);
+
+      thisProduckt.amountWidgetElem.addEventListener('updated',function(){
+        thisProduckt.processOrder();
+      });
+    }
+  }
+
+  class AmountWidget{
+    constructor(element){
+      const thisWidget = this;
+      thisWidget.getElements(element);
+      //thisWidget.setValue(thisWidget.input.value);
+      thisWidget.setValue(thisWidget.setDefaultInputValue());
+      thisWidget.initActions();
+
+      // console.log('AmountWidget: ', thisWidget);
+      // console.log('constructor argument: ', element);
+    }
+
+    getElements(element){
+      const thisWidget = this;
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
+
+    setValue(value){
+      const thisWidget = this;
+      const newValue = parseInt(value);
+
+      /*Validation*/
+      if(thisWidget.value !== newValue && !isNaN(value)){
+        thisWidget.value = newValue;
+      }
+      
+      if(newValue > settings.amountWidget.defaultMax) {
+        thisWidget.value = settings.amountWidget.defaultMax; 
+      }
+
+      if(newValue < settings.amountWidget.defaultMin) {
+        thisWidget.value = settings.amountWidget.defaultMin; 
+      }
+      //Why doesn't it work?
+      // newValue > settings.amountWidget.defaultMax ? thisWidget.value = settings.amountWidget.defaultMax : thisWidget.value = newValue; 
+      // newValue < settings.amountWidget.defaultMin ? thisWidget.value = settings.amountWidget.defaultMin : thisWidget.value = newValue; 
+      
+      thisWidget.input.value = thisWidget.value;
+      //console.log('setValue called');
+
+      thisWidget.annouce();
+    }
+    
+    initActions(){
+      //console.log('here');
+      const thisWidget = this;
+      thisWidget.input.addEventListener('change', function(){
+        thisWidget.setValue(thisWidget.input.value);
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function(e){
+        e.preventDefault;
+        thisWidget.setValue(thisWidget.value - 1);
+      }); 
+
+      thisWidget.linkIncrease.addEventListener('click', function(e){
+        e.preventDefault;
+        thisWidget.setValue(thisWidget.value + 1);
+      }); 
+    }
+
+    annouce(){
+      const thisWidget = this;
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
+    }
+
+    setDefaultInputValue(){
+      const thisWidget = this;
+      if(isNaN(thisWidget.input.value)){
+        return settings.amountWidget.defaultValue;
+      } else {
+        return thisWidget.input.value;
+      }
+    }   
   }
 
   const app = {
