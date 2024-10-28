@@ -182,6 +182,7 @@ const select = {
           e.preventDefault();
           thisProduckt.processOrder();
           thisProduckt.addToCart();
+          //console.log('app.cart.products: ',app.cart.products);
         });
     }
     
@@ -403,8 +404,38 @@ const select = {
       const generatedHTML = templates.cartProduct(menuProduct);
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
       thisCart.dom.productList.appendChild(generatedDOM);
+      console.log('generatedDOM: ',generatedDOM);
 
-      //console.log('adding product', menuProduct);
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+
+      //console.log('Products: ', this.products);
+      //console.log('thisCart.products', thisCart.products);
+    }
+  }
+
+  class CartProduct{
+    constructor(menuProduct, element){
+      const thisCartProduct = this;
+      thisCartProduct.id = menuProduct.id;
+      thisCartProduct.name = menuProduct.name;
+      thisCartProduct.amount = menuProduct.amount;
+      thisCartProduct.priceSingle = menuProduct.priceSingle;
+      thisCartProduct.price = menuProduct.price;
+      thisCartProduct.params = menuProduct.params;
+
+      thisCartProduct.getElements(element);
+      console.log('thisCartProduct', thisCartProduct)
+    }
+
+    getElements(element){
+      //console.log(element);
+      const thisCartProduct = this;
+      thisCartProduct.dom = {};
+      thisCartProduct.dom.wrapper = element;
+      thisCartProduct.dom.amountWidget = element.querySelector(select.cartProduct.amountWidget);
+      thisCartProduct.dom.price = element.querySelector(select.cartProduct.price);
+      thisCartProduct.dom.edit = element.querySelector(select.cartProduct.price);
+      thisCartProduct.dom.remove = element.querySelector(select.cartProduct.remove);
     }
   }
 
