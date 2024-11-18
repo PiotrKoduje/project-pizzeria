@@ -119,7 +119,7 @@ const app = {
     thisApp.initCart();
     thisApp.initPages();
     thisApp.initBooking();
-    console.log(thisApp);
+    //console.log(thisApp);
   },
 };
 
