@@ -58,7 +58,7 @@ class Cart{
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
 
-      //console.log('Products: ', this.products);
+      console.log('Products: ', this.products);
       //console.log('thisCart.products', thisCart.products);
       thisCart.update();
     }

@@ -7,7 +7,7 @@ import Booking from './components/Booking.js';
 const app = {
   initPages: function(){
     const thisApp = this;
-
+    
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
