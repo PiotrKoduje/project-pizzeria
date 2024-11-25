@@ -5,16 +5,15 @@ import CartProduct from './CartProduct.js';
 class Cart{
     constructor(element){
       const thisCart = this;
-      thisCart.products = [];
 
+      thisCart.products = [];
       thisCart.getElements(element);
       thisCart.initActions();
-
-      //console.log('new Cart', thisCart);
     }
 
     getElements(element){
       const thisCart = this;
+
       thisCart.dom = {};
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
@@ -26,7 +25,6 @@ class Cart{
       thisCart.dom.form = element.querySelector(select.cart.form);
       thisCart.dom.address = element.querySelector(select.cart.address);
       thisCart.dom.phone = element.querySelector(select.cart.phone);
-      //console.log(thisCart.dom.totalPrice);
     }
 
     initActions(){
@@ -53,18 +51,14 @@ class Cart{
       const generatedHTML = templates.cartProduct(menuProduct);
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
       thisCart.dom.productList.appendChild(generatedDOM);
-      // console.log('generatedDOM: ',generatedDOM);
-      // console.log('toggleTrigger: ', thisCart.dom.toggleTrigger);
-
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
 
-      //console.log('Products: ', this.products);
-      //console.log('thisCart.products', thisCart.products);
       thisCart.update();
     }
 
     update(){
       const thisCart = this;
+
       const deliveryFee = settings.cart.defaultDeliveryFee;
       thisCart.totalNumber = 0;
       thisCart.subtotalPrice = 0;
@@ -75,8 +69,7 @@ class Cart{
       }
 
       thisCart.products.length > 0 ? thisCart.totalPrice = thisCart.subtotalPrice + deliveryFee : thisCart.totalPrice = 0;
-      //console.log('totalNumber: ',totalNumber, ' subtotalPrice: ', subtotalPrice, ' totalPrice: ', thisCart.totalPrice);
-
+    
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
@@ -88,16 +81,16 @@ class Cart{
 
     remove(el){
       const thisCart = this;
+
       el.dom.wrapper.remove();
       const index = thisCart.products.indexOf(el);
       thisCart.products.splice(index, 1);
       thisCart.update();
-
-      //console.log(thisCart.products);
     }
 
     sendOrder(){
       const thisCart = this;
+
       const url = settings.db.url + '/' + settings.db.orders;
       const payload = {};
 
@@ -112,7 +105,6 @@ class Cart{
       for(const prod of thisCart.products){
         payload.products.push(prod.getData());
       }
-      //console.log(payload);
 
       const options = {
         method: 'POST',

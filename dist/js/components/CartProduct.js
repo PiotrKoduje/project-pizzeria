@@ -4,6 +4,7 @@ import AmountWidget from './AmountWidget.js';
 class CartProduct{
     constructor(menuProduct, element){
       const thisCartProduct = this;
+
       thisCartProduct.id = menuProduct.id;
       thisCartProduct.name = menuProduct.name;
       thisCartProduct.amount = menuProduct.amount;
@@ -14,12 +15,11 @@ class CartProduct{
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
       thisCartProduct.initActions();
-      //console.log('thisCartProduct', thisCartProduct)
     }
 
     getElements(element){
-      //console.log(element);
       const thisCartProduct = this;
+
       thisCartProduct.dom = {};
       thisCartProduct.dom.wrapper = element;
       thisCartProduct.dom.amountWidget = element.querySelector(select.cartProduct.amountWidget);
@@ -30,16 +30,13 @@ class CartProduct{
 
     initAmountWidget(){
       const thisCartProduct = this;
+
       thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
       thisCartProduct.amountWidget.value = thisCartProduct.amount;
-      //console.log(thisCartProduct.amountWidget);
       thisCartProduct.dom.amountWidget.addEventListener('updated', function(){
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
         thisCartProduct.price = thisCartProduct.amount*thisCartProduct.priceSingle;
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
-
-        //console.log('thisCartProduct.amountWidgect', thisCartProduct.amountWidget);
-
       });
     }
 
@@ -53,11 +50,11 @@ class CartProduct{
         },
       });
       thisCartProduct.dom.wrapper.dispatchEvent(event);
-      //console.log('element to remove: ', thisCartProduct);
     }
 
     initActions(){
       const thisCartProduct = this;
+
       thisCartProduct.dom.edit.addEventListener('click', function(e){
         e.preventDefault();
       });
@@ -69,6 +66,7 @@ class CartProduct{
 
     getData(){
       const thisCartProduct = this;
+      
       const orderSummary = {};
 
       orderSummary.id = thisCartProduct.id;

@@ -12,6 +12,7 @@ class Home{
 
   render(element){
     const thisHome = this;
+    
     const generatedHTML = templates.home();
     
     thisHome.dom = {};
@@ -22,7 +23,6 @@ class Home{
     thisHome.dom.booking = element.querySelector(select.home.booking);
     thisHome.dom.tiles = element.querySelector(select.home.tiles);
     thisHome.dom.carousel = element.querySelector(select.home.carousel);
-    //console.log(thisHome.dom.carousel);
   }
 
   initActions(){

@@ -37,14 +37,12 @@ class Booking{
         endDateParam,
       ],
     };
-    //console.log('getData params: ', params);
 
     const urls = {
       booking:      settings.db.url + '/' + settings.db.bookings + '?' + params.booking.join('&'),
       eventsCurent: settings.db.url + '/' + settings.db.events    + '?' + params.eventsCurent.join('&'),
       eventsRepeat: settings.db.url + '/' + settings.db.events   + '?' + params.eventsRepeat.join('&'),
     };
-    //console.log('urls: ', urls);
 
     Promise.all([
       fetch(urls.booking),
@@ -62,9 +60,6 @@ class Booking{
       ])
     })
     .then(function([bookings, eventsCurent, eventsRepeat]){
-      // console.log('bookings: ',bookings);
-      // console.log('eventsCurent: ',eventsCurent);
-      // console.log('eventsRepeat: ',eventsRepeat);
       thisBooking.parseData(bookings,eventsCurent,eventsRepeat);
     });
   }
@@ -92,7 +87,6 @@ class Booking{
         }
       }
     }
-    //console.log('thisBooking.booked', thisBooking.booked);
 
     thisBooking.updateDOM();
   }
@@ -164,12 +158,11 @@ class Booking{
     thisBooking.dom.phone = element.querySelector(select.booking.phone);
     thisBooking.dom.address = element.querySelector(select.booking.address);
     thisBooking.dom.starters = element.querySelectorAll(select.booking.starters);
-
-    //console.log('dom', thisBooking.dom);
   }
     
   initWidgets(){
     const thisBooking = this;
+
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
@@ -181,13 +174,13 @@ class Booking{
     });
 
     thisBooking.dom.tablesWrapper.addEventListener('click', function(e){
-      //console.log(e.target);
       thisBooking.initTables(e);
     });
   }
 
   clearTables(){
     const thisBooking = this;
+
     for(const table of thisBooking.dom.tables){
       table.classList.remove('selected');
   }
@@ -216,7 +209,6 @@ class Booking{
         }
       }
     }
-    //console.log('selectedTable', thisBooking.selectedTable);
   }
 
   initSending(){
@@ -237,7 +229,7 @@ class Booking{
     }
 
     const url = settings.db.url + '/' + settings.db.bookings;
-    //console.log(url);
+
     const payload = {};
 
     payload.date = thisBooking.datePicker.value;
@@ -254,7 +246,6 @@ class Booking{
         payload.starters.push(starter.value);
       }
     }
-    //console.log(payload);
 
     const options = {
       method: 'POST',

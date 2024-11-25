@@ -9,11 +9,13 @@ class BaseWidget{
 
   get value(){
     const thisWidget = this;
+
     return thisWidget.correctValue;
   }
 
   set value(value){
     const thisWidget = this;
+
     const newValue = thisWidget.parseValue(value);
     
     if(thisWidget.correctValue !== newValue && thisWidget.isValid(value)){
@@ -22,13 +24,7 @@ class BaseWidget{
     
     thisWidget.renderValue();
     thisWidget.annouce();
-    //console.log(thisWidget);
   }
-
-  // setValue(value){
-  //   const thisWidget = this;
-  //   thisWidget.value = value;
-  // }
 
   parseValue(value){
     return parseInt(value);
@@ -40,11 +36,13 @@ class BaseWidget{
 
   renderValue(){
     const thisWidget = this;
+
     thisWidget.dom.wrapper.innerHTML = thisWidget.value;
   }
 
   annouce(){
     const thisWidget = this;
+    
     const event = new CustomEvent('updated',{
       bubbles: true
     });
