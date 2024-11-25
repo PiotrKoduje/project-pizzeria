@@ -1,0 +1,238 @@
+/*Global*/
+*, *::before, *::after{
+  margin: 0;
+  padding: 0;
+}
+
+section{
+  margin-top: 100px;
+}
+
+.home-wrapper{
+  background-color: $color-light;
+  color: $color-dark;
+  padding: 20px;
+  margin: 40px auto;
+
+  //Links
+  .tiles{
+    display: flex;
+    flex-wrap: wrap;
+    color: $color-light;
+    margin-top: 30px;
+    
+    .tile{
+      @include flex(column,center, center);
+      flex: 1 1 calc(50% - 8px);
+      position: relative;
+      overflow: hidden;
+      background-position: center;
+      background-size: cover;
+      margin: 4px;
+      height: 130px;
+      border-radius: $radius;
+      cursor: pointer;
+
+      .title{
+        font-family: $font-header;
+        text-align: center;
+        font-size: 25px;
+        text-transform: uppercase;
+        transition: $transition;
+      }
+      
+      .subtitle{
+        position: absolute;
+        text-align: center;
+        bottom: -50px;
+        transition: $transition;
+      }
+
+      &:hover .title{
+        transform: translateY(-30%);
+      }
+      &:hover .subtitle{
+        bottom: 30px;
+      }
+    }
+
+    .order{
+      background-image: url('../images/home/pizza-1.jpg');
+    }
+    
+    .booking{
+      background-image: url('../images/home/pizza-2.jpg');
+    }
+
+    .info{
+      background-color: $color-main;
+      cursor: unset;
+
+      .subtitle{
+        position: unset;
+        bottom: unset;
+      }
+
+      &:hover .title{
+        transform: translateY(0);
+      }
+    }
+  }
+
+  //Carousel
+  .carousel{
+    width: 100%;
+
+    .carousel-cell{
+      display: flex;
+
+      .image{
+        flex: 1 1 33%;
+        margin: 4px;
+        
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: $radius;
+        }
+      }
+      
+      .content{
+        flex: 1 1 67%;
+        margin: 4px;
+        padding: 20px 30px;
+
+        .content-header{
+          font-family: $font-header;
+          text-transform: uppercase;
+        }
+
+        .comment{
+          margin-top: 5px;
+        }
+        
+        .signature{
+          margin-top: 5px;
+          font-style: italic;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  //Gallery
+  .gallery{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    
+    .photo{
+      display: flex;
+      flex: 1 1 calc(33.33% - 10px);
+      position: relative;
+      
+      img{
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+        border-radius: $radius;
+      }
+
+      .layer{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(0,0,0,0.5);
+        display: none;
+        transition: $transition;
+        border-radius: $radius;
+
+        &:hover .wrapper i{
+          color: $color-main;
+          transform: scale(5);
+          transition: $transition;
+        }
+
+        .wrapper{
+          position: absolute;
+          @include center();
+          @include flex( row, center, space-around);
+          width: 110px;
+          height: 50px;
+        }
+
+        i{
+          color: $color-light;
+          font-size: 6px;
+        }
+      }
+
+
+      &:hover .layer{
+        display: block;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .main-footer{
+    margin-top: 30px;
+    a{
+      color: $color-main;
+    }
+  }
+}
+
+//Media
+@media (max-width: 768px){
+  .home-wrapper .tiles .tile{
+    flex: 1 1 100%;
+  }
+
+  .home-wrapper .gallery .photo{
+    flex: 1 1 calc(50% - 10px);
+
+  }
+
+  .home-wrapper .gallery .photo .layer .wrapper{
+    width: 40%;
+  }
+
+  .home-wrapper .carousel .carousel-cell .image{
+    flex: 1 1 45%;
+  }
+
+  .home-wrapper .carousel .carousel-cell .content{
+    flex: 1 1 55%;
+  }
+}
+
+@media (max-width: 576px){
+  .home-wrapper .gallery .photo{
+    flex: 1 1 100%;
+
+  }
+  
+  .home-wrapper .gallery .photo .layer .wrapper{
+    width: 40%;
+  }
+
+  .home-wrapper .carousel .carousel-cell .image{
+    flex: 1 1 50%;
+  }
+
+  .home-wrapper .carousel .carousel-cell .content{
+    flex: 1 1 50%;
+  }
+}
+
+ 
+
+
+
+
+

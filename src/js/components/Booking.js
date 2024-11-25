@@ -1,4 +1,4 @@
-import { select, templates, settings, classNames } from "../settings.js";
+import { select, templates, settings, classNames } from '../settings.js';
 import {utils} from './../utils.js';
 import AmountWidget from "./AmountWidget.js";
 import DatePicker from "./DatePicker.js";
@@ -92,7 +92,7 @@ class Booking{
         }
       }
     }
-    console.log('thisBooking.booked', thisBooking.booked);
+    //console.log('thisBooking.booked', thisBooking.booked);
 
     thisBooking.updateDOM();
   }
@@ -199,7 +199,7 @@ class Booking{
 
     if(e.target.hasAttribute('data-table')){
       if(e.target.classList.contains('booked')){
-        alert('ten stoli jest zajęty');
+        alert('This table is unavailable');
       } else {
         if(e.target.classList.contains('selected')){
           e.target.classList.remove('selected');
@@ -237,7 +237,7 @@ class Booking{
     }
 
     const url = settings.db.url + '/' + settings.db.bookings;
-    console.log(url);
+    //console.log(url);
     const payload = {};
 
     payload.date = thisBooking.datePicker.value;
@@ -271,7 +271,9 @@ class Booking{
         thisBooking.getData();
       }).then(function(){
         thisBooking.clearTables();
-      });   
+      }).then(function(){
+        alert('Reservation confirmed!');
+      });
   }
 }
 

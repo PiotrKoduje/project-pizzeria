@@ -14,7 +14,7 @@ class CartProduct{
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
       thisCartProduct.initActions();
-      console.log('thisCartProduct', thisCartProduct)
+      //console.log('thisCartProduct', thisCartProduct)
     }
 
     getElements(element){
@@ -31,6 +31,8 @@ class CartProduct{
     initAmountWidget(){
       const thisCartProduct = this;
       thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
+      thisCartProduct.amountWidget.value = thisCartProduct.amount;
+      //console.log(thisCartProduct.amountWidget);
       thisCartProduct.dom.amountWidget.addEventListener('updated', function(){
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
         thisCartProduct.price = thisCartProduct.amount*thisCartProduct.priceSingle;

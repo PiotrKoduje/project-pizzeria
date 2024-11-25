@@ -9,6 +9,8 @@
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="vendor/rangeSlider/range-slider.min.css">
+  <!-- <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css"> -->
+   <link rel="stylesheet" href="vendor/flickity/clickity.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -21,6 +23,7 @@
           <h2 class="logo__subtitle">the best homemade Italian food</h2>
         </div>
         <div class="main-nav">
+          <a href="#home">Home</a>
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
         </div>
@@ -62,6 +65,9 @@
   </header>
 
   <div id="pages">
+    <section id="home">
+      <div class="home-wrapper container"></div>
+    </section>
     <section id="order">
       <div id="product-list" class="product-list container"></div>
     </section>
@@ -69,6 +75,124 @@
       <div class="booking-wrapper container"></div>
     </section>
   </div>
+
+  <script id="template-home" type="text/x-handlebars-template">
+    <section class="tiles">
+      <div class="tile order" data-tile="order">
+        <h1 class="title">order online</h1>
+        <p class="subtitle">Delicious food delivered to your door</p>
+      </div>
+      <div class="tile booking" data-tile="booking">
+        <h1 class="title">book a table</h1>
+        <p class="subtitle">Reserve your table</p>
+      </div>
+      <div class="tile info" data-tile="info">
+        <h1 class="title">opening hours:</h1>
+        <p class="subtitle">MON - SUN, 12PM - 11PM</p>
+      </div>
+    </section>
+    <section class="carousel">
+      <div class="carousel-cell">
+        <div class="image">
+          <img src="images/home/pizza-3.jpg" alt="photo-3">
+        </div>
+        <div class="content">
+          <h2 class="content-header">Great venue</h2>
+          <p class="comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore molestias id cum perferendis amet. Quis?</p>
+          <p class="signature">- Margaret Osborne</p>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <div class="image">
+          <img src="images/home/pizza-3.jpg" alt="photo-3">
+        </div>
+        <div class="content">
+          <h2 class="content-header">Amazing service</h2>
+          <p class="comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore molestias id cum perferendis amet. Quis?</p>
+          <p class="signature">- Kaslik Amanow</p>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <div class="image">
+          <img src="images/home/pizza-3.jpg" alt="photo-3">
+        </div>
+        <div class="content">
+          <h2 class="content-header">Good snacks</h2>
+          <p class="comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore molestias id cum perferendis amet. Quis?</p>
+          <p class="signature">- Rupert Sasanov</p>
+        </div>
+      </div>
+      <div class="carousel-cell">
+        <div class="image">
+          <img src="images/home/pizza-3.jpg" alt="photo-3">
+        </div>
+        <div class="content">
+          <h2 class="content-header">Delicious food</h2>
+          <p class="comment">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore molestias id cum perferendis amet. Quis?</p>
+          <p class="signature">- Kaslik Amanow</p>
+        </div>
+      </div>
+    </section>
+    <section class="gallery">
+      <div class="photo">
+        <img src="images/home/pizza-4.jpg" alt="">
+        <div class="layer">
+          <div class="wrapper">
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-share-alt"></i>
+          </div>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="images/home/pizza-5.jpg" alt="">
+        <div class="layer">
+          <div class="wrapper">
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-share-alt"></i>
+          </div>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="images/home/pizza-6.jpg" alt="">
+        <div class="layer">
+          <div class="wrapper">
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-share-alt"></i>
+          </div>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="images/home/pizza-7.jpg" alt="">
+        <div class="layer">
+          <div class="wrapper">
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-share-alt"></i>
+          </div>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="images/home/pizza-8.jpg" alt="">
+        <div class="layer">
+          <div class="wrapper">
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-share-alt"></i>
+          </div>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="images/home/pizza-9.jpg" alt="">
+        <div class="layer">
+          <div class="wrapper">
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-share-alt"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="main-footer">
+      <a href="https://www.instagram.com/">View more on Instagram</a>
+    </footer>
+  </script>
 
   <script id="template-booking-widget" type="text/x-handlebars-template">
     <div class="booking-widget">
@@ -246,6 +370,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="vendor/rangeSlider/range-slider.min.js"></script>
+  <!-- <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script> -->
+   <script src="vendor/flickity/flickity.js"></script>
   <script src="js/app.js" type="module"></script>
 </body>
 </html>

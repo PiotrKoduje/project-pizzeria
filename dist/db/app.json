@@ -264,6 +264,30 @@
     }
   ],
   "bookings": [
-  
+    {
+      "date": "2024-11-28",
+      "hour": "12:00",
+      "table": 1,
+      "duration": 1,
+      "people": 1,
+      "starters": [
+        "water",
+        "bread"
+      ],
+      "phone": "",
+      "address": "",
+      "id": 1
+    },
+    {
+      "date": "2024-11-25",
+      "hour": "12:00",
+      "table": 2,
+      "duration": 1,
+      "people": 1,
+      "starters": [],
+      "phone": "",
+      "address": "",
+      "id": 2
+    }
   ]
 }
