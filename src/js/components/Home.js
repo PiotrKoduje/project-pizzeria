@@ -1,5 +1,5 @@
 import { select, templates } from "../settings.js";
-import Flickity from './../../vendor/flickity/flickity.js';
+/* global Flickity */ 
 
 class Home{
   constructor(element){
@@ -47,14 +47,14 @@ class Home{
 
   initCarousel(){
     const thisHome = this;
-
+   
     const flkty = new Flickity(thisHome.dom.carousel,{  
       cellAlign: 'left',
       contain: true,
       autoPlay: 3000,
       wrapAround: true,
       prevNextButtons: false,
-    });
+    });   
     flkty.used = true;
   }
 }
