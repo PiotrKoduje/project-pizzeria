@@ -2,10 +2,22 @@
 
 .btn-primary {
   @include btn($color-dark, $color-light, $color-dark);
+
+  &:active{
+    color: $color-main;
+  }
 }
 
 .btn-secondary {
   @include btn($color-main, $color-light, $color-main);
+
+  &:hover{
+    cursor: pointer;
+  }
+
+  &:active{
+    background-color: #b64d4d;
+  }
 }
 
 .btn-quantity {

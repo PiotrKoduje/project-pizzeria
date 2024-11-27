@@ -83,11 +83,15 @@
     }
   
     &__fill {
-      background: $color-success;
+      background: lighten($color-dark, 70%);
       transition: width 100ms;
       transition-timing-function: cubic-bezier(0, 1, 0, 1);
       box-shadow: none;
     }
+  }
+
+  .custom-slider{
+    background: blue;
   }
   
   .flatpickr-day {

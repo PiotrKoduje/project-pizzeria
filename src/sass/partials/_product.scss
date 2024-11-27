@@ -118,5 +118,10 @@
       margin: 0 ($base-size / 2);
       padding: 0;
     }
+
+    .btn-quantity:active i{
+      color: $color-main;
+      font-size: 120%;
+    }
   
   }
